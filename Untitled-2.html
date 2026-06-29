@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday to You! ✨🧸🌸</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Itim&family=Mali:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --pink-light: #FFE5EC;
+            --pink-medium: #FFB3C6;
+            --pink-dark: #FF85A1;
+            --pink-deep: #F72585;
+            --cream-white: rgba(255, 255, 255, 0.94);
+        }
+
+        body {
+            margin: 0;
+            padding: 20px 0;
+            background-color: var(--pink-light);
+            font-family: 'Mali', 'Itim', cursive;
+            overflow-x: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-image: radial-gradient(var(--pink-medium) 15%, transparent 16%);
+            background-size: 30px 30px;
+        }
+
+        .background-decor {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            top: 0;
+            left: 0;
+        }
+
+        /* คอนเทนเนอร์หลัก */
+        .container {
+            display: flex;
+            width: 92%;
+            max-width: 1100px;
+            background: var(--cream-white);
+            backdrop-filter: blur(8px);
+            border-radius: 45px;
+            padding: 40px 30px;
+            box-shadow: 0 20px 60px rgba(255, 133, 161, 0.45);
+            border: 6px dashed var(--pink-medium);
+            z-index: 2;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            animation: container-float 4s infinite ease-in-out;
+            box-sizing: border-box;
+        }
+
+        /* ฝั่งซ้าย: แกลเลอรีรูปโพลารอยด์ */
+        .side-profile {
+            flex: 1.1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            padding: 10px;
+            width: 100%;
+        }
+
+        .gallery-container {
+            position: relative;
+            width: 100%;
+            height: 320px;
+            margin-bottom: 25px;
+        }
+
+        /* ดีไซน์กรอบโพลารอยด์ */
+        .polaroid {
+            background: white;
+            padding: 12px 12px 28px 12px;
+            box-shadow: 0 12px 28px rgba(247, 37, 133, 0.15), 0 2px 5px rgba(0,0,0,0.05);
+            border-radius: 4px;
+            position: absolute;
+            width: 155px;
+            height: 185px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            box-sizing: border-box;
+        }
+
+        .polaroid img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 2px;
+            border: 1px solid #f0f0f0;
+        }
+
+        .photo-1 { top: 10px; left: 15px; transform: rotate(-12deg); z-index: 3; }
+        .photo-2 { top: 25px; right: 15px; transform: rotate(10deg); z-index: 2; }
+        .photo-3 { bottom: 15px; left: 75px; transform: rotate(-4deg); z-index: 1; }
+
+        /* เอฟเฟกต์ตอนชี้โพลารอยด์ */
+        .polaroid:hover {
+            transform: scale(1.22) rotate(0deg) translateY(-15px) !important;
+            z-index: 99 !important;
+            box-shadow: 0 20px 40px rgba(247, 37, 133, 0.3);
+        }
+
+        /* เทปกาวหัวใจน่ารักๆ แปะหัวรูป */
+        .polaroid::before {
+            content: "💝";
+            position: absolute;
+            top: -14px;
+            left: 32%;
+            width: 55px;
+            height: 22px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(2px);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            text-align: center;
+            font-size: 11px;
+            line-height: 22px;
+            border-radius: 4px;
+            border-left: 2px dashed var(--pink-dark);
+            border-right: 2px dashed var(--pink-dark);
+        }
+
+        /* โซนกลาง: เค้ก + กรอบรูปหัวใจ */
+        .main-cake {
+            flex: 1.4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 0 20px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .headline {
+            color: var(--pink-deep);
+            font-size: 2.8rem;
+            margin: 0 0 15px 0;
+            text-shadow: 3px 3px 0px white;
+            text-align: center;
+            animation: text-wobble 3s infinite ease-in-out;
+        }
+
+        .cake-area {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
+        .cake-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 150px;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            outline: none;
+            z-index: 5;
+            filter: drop-shadow(0 10px 15px rgba(247, 37, 133, 0.25));
+        }
+
+        .cake-btn:hover { transform: scale(1.18) rotate(6deg); }
+
+        /* กรอบรูปหัวใจ */
+        .heart-photo-frame {
+            position: absolute;
+            right: -110px;
+            top: 15px;
+            width: 110px;
+            height: 110px;
+            background: linear-gradient(135deg, var(--pink-medium), var(--pink-dark));
+            padding: 5px; 
+            clip-path: polygon(50% 15%, 65% 0%, 85% 0%, 100% 20%, 100% 45%, 50% 95%, 0% 45%, 0% 20%, 15% 0%, 35% 0%);
+            box-shadow: 0 8px 20px rgba(247, 37, 133, 0.2);
+            transform: rotate(12deg);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 6;
+            box-sizing: border-box;
+        }
+        
+        .heart-photo-frame .heart-inner {
+            width: 100%;
+            height: 100%;
+            background: white;
+            clip-path: polygon(50% 15%, 65% 0%, 85% 0%, 100% 20%, 100% 45%, 50% 95%, 0% 45%, 0% 20%, 15% 0%, 35% 0%);
+            overflow: hidden;
+        }
+
+        .heart-photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1.1);
+        }
+
+        .heart-photo-frame:hover {
+            transform: scale(1.25) rotate(-5deg);
+            filter: drop-shadow(0 10px 25px rgba(247, 37, 133, 0.4));
+        }
+
+        /* มงกุฎแปะด้านบนหัวใจ */
+        .heart-crown {
+            position: absolute;
+            top: -22px;
+            right: -75px;
+            font-size: 22px;
+            z-index: 7;
+            transform: rotate(25deg);
+            animation: cute-bounce 2s infinite ease-in-out;
+        }
+
+        /* กรอบรูปสไตล์วินโดว์เรโทร */
+        .window-photo-frame {
+            width: 200px;
+            background: white;
+            border: 4px solid var(--pink-dark);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 12px 30px rgba(247, 37, 133, 0.2);
+            margin-top: 25px;
+            transition: transform 0.3s;
+        }
+        .window-photo-frame:hover {
+            transform: translateY(-5px) scale(1.05);
+        }
+        .window-bar {
+            background: linear-gradient(90deg, var(--pink-dark), var(--pink-medium));
+            color: white;
+            font-size: 11px;
+            padding: 5px 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            border-bottom: 2px solid var(--pink-dark);
+        }
+        .window-close-dot {
+            background: #ff4b5c;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
+        }
+        .window-photo-frame img {
+            width: 100%;
+            height: 110px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .hint-text {
+            color: white;
+            background: linear-gradient(135deg, var(--pink-dark), var(--pink-deep));
+            padding: 8px 22px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            margin-top: 20px;
+            font-weight: bold;
+            animation: pulse 1.2s infinite;
+            box-shadow: 0 5px 15px rgba(247, 37, 133, 0.3);
+            text-align: center;
+        }
+
+        /* ปุ่มเปิดเกมทายวันเกิด */
+        .game-trigger-btn {
+            background: linear-gradient(135deg, #FF99C8, #FC60A8);
+            color: white;
+            border: 3px solid white;
+            padding: 10px 25px;
+            border-radius: 20px;
+            font-size: 1.1rem;
+            font-family: 'Mali', cursive;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 15px;
+            box-shadow: 0 6px 15px rgba(252, 96, 168, 0.4);
+            transition: all 0.3s ease;
+        }
+        .game-trigger-btn:hover {
+            transform: scale(1.1) rotate(-2deg);
+            box-shadow: 0 8px 20px rgba(252, 96, 168, 0.6);
+        }
+
+        /* กองทัพตุ๊กตา */
+        .mascot {
+            position: absolute;
+            user-select: none;
+            transition: transform 0.3s ease;
+            z-index: 10;
+        }
+        .mascot:hover { transform: scale(1.3) rotate(15deg); }
+
+        .m-rabbit  { font-size: 50px; top: -35px; left: 30px; animation: cute-bounce 2s infinite ease-in-out; }
+        .m-bear    { font-size: 55px; bottom: -20px; left: -15px; animation: cute-bounce 2.2s infinite ease-in-out 0.2s; }
+        .m-chick   { font-size: 40px; bottom: -20px; right: 20px; animation: cute-bounce 1.7s infinite ease-in-out 0.5s; }
+        .m-cat     { font-size: 45px; top: -30px; right: 40px; animation: cute-bounce 1.9s infinite ease-in-out 0.1s; }
+        .m-dog     { font-size: 42px; bottom: 40px; left: -30px; animation: text-wobble 2.5s infinite ease-in-out; }
+        .m-panda   { font-size: 45px; top: 40px; right: -25px; animation: text-wobble 3s infinite ease-in-out; }
+
+        /* ป๊อปอัพคำอวยพร / หน้าต่างเกม */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(247, 37, 133, 0.25);
+            backdrop-filter: blur(6px);
+            display: flex; justify-content: center; align-items: center;
+            z-index: 100; opacity: 0; pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        .modal-overlay.active { opacity: 1; pointer-events: auto; }
+
+        .modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 40px;
+            max-width: 500px;
+            width: 85%;
+            text-align: center;
+            box-shadow: 0 25px 60px rgba(247, 37, 133, 0.4);
+            border: 6px dashed var(--pink-dark);
+            transform: scale(0.6);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            box-sizing: border-box;
+        }
+
+        .modal-overlay.active .modal-content { transform: scale(1); }
+        .modal-content h2 { color: var(--pink-deep); margin-top: 0; font-size: 2.5rem; }
+
+        /* หน้าตาของเกมทายอายุวัน */
+        .game-box {
+            background: #FFF0F5;
+            border: 3px solid var(--pink-medium);
+            border-radius: 20px;
+            padding: 20px;
+            margin-top: 15px;
+            box-sizing: border-box;
+        }
+        .game-input-group {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .game-input-group div {
+            flex: 1;
+        }
+        .game-box label {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--pink-deep);
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .game-box input, .game-box select {
+            width: 100%;
+            padding: 8px;
+            border: 2px solid var(--pink-medium);
+            border-radius: 12px;
+            font-family: 'Mali', cursive;
+            text-align: center;
+            outline: none;
+            box-sizing: border-box;
+        }
+        .game-box input:focus, .game-box select:focus {
+            border-color: var(--pink-dark);
+        }
+        .game-btn-calc {
+            background: var(--pink-deep);
+            color: white;
+            border: none;
+            padding: 8px 25px;
+            font-family: 'Mali', cursive;
+            font-size: 1.1rem;
+            border-radius: 15px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(247, 37, 133, 0.3);
+        }
+        .game-result {
+            margin-top: 15px;
+            font-size: 1.3rem;
+            color: var(--pink-deep);
+            font-weight: bold;
+            min-height: 40px;
+        }
+
+        .close-btn {
+            background: linear-gradient(135deg, #ff758c, #ff7eb3);
+            color: white; border: none; padding: 12px 38px;
+            font-size: 1.2rem; border-radius: 30px; cursor: pointer;
+            font-family: 'Mali', sans-serif; margin-top: 25px;
+            box-shadow: 0 6px 20px rgba(255, 117, 140, 0.4);
+            transition: all 0.2s;
+        }
+        .close-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(255, 117, 140, 0.6); }
+
+        /* แก้ไขบั๊กตรงนี้: เติมเครื่องหมายเซมิโคลอนหลังตำแหน่ง fixed */
+        .heart-particle {
+            position: fixed; 
+            pointer-events: none; 
+            font-size: 32px;
+            animation: floatUp 1.4s forwards cubic-bezier(0.12, 0.89, 0.32, 0.94);
+            z-index: 999;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Animations */
+        @keyframes container-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        @keyframes cute-bounce { 0%, 100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-15px) scale(1.1) rotate(5deg); } }
+        @keyframes text-wobble { 0%, 100% { transform: rotate(-2deg); } 50% { transform: rotate(2deg) scale(1.02); } }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+        @keyframes floatUp {
+            0% { transform: translate(-50%, -50%) scale(0.3) rotate(0deg); opacity: 0; }
+            20% { opacity: 1; transform: translate(-50%, -50%) scale(1.3); }
+            100% { transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) scale(0) rotate(270deg); opacity: 0; }
+        }
+
+        /* Responsive สำหรับมือถือ */
+        @media (max-width: 768px) {
+            .container { flex-direction: column; padding: 40px 15px; width: 90%; }
+            .side-profile { width: 100%; min-height: auto; margin-bottom: 20px; }
+            .gallery-container { height: 240px; width: 100%; max-width: 340px; margin: 0 auto 25px auto; }
+            .polaroid { width: 110px; height: 140px; padding: 8px 8px 18px 8px; }
+            .polaroid img { height: 95px; }
+            .photo-1 { left: 5%; top: 10px; }
+            .photo-2 { right: 5%; top: 20px; }
+            .photo-3 { left: 32%; bottom: 10px; top: auto; }
+            .cake-area { margin-top: 40px; }
+            .heart-photo-frame { right: -25px; top: -50px; width: 85px; height: 85px; }
+            .heart-crown { top: -75px; right: 5px; font-size: 18px; }
+            .window-photo-frame { width: 180px; }
+            .headline { font-size: 2.2rem; }
+            .cake-btn { font-size: 110px; }
+            .m-dog, .m-panda { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="background-decor" id="bgDecor"></div>
+
+    <div class="container">
+        <div class="mascot m-rabbit">🐰🎀</div>
+        <div class="mascot m-bear">🧸🍭</div>
+        <div class="mascot m-chick">🐥🧁</div>
+        <div class="mascot m-cat">🐱🐾</div>
+        <div class="mascot m-dog">🐶🦴</div>
+        <div class="mascot m-panda">🐼🍓</div>
+
+        <div class="side-profile">
+            <div class="gallery-container">
+                <div class="polaroid photo-1" onclick="bringToFront(this)">
+                    <img src="https://scontent.furt3-1.fna.fbcdn.net/v/t1.15752-9/729274987_985995214205261_5020538226125427411_n.jpg?stp=dst-jpg_s960x960_tt6&_nc_cat=107&ccb=1-7&_nc_sid=9f807c&_nc_ohc=PAfgi11mN6MQ7kNvwGHdGGH&_nc_oc=AdqQnnMqC79W7YIokfok8WAeuJTgr6nN6FR-e_nIsbdCOgV69t9dym6VE7WfH_B3fbgg5OQU-M0NePz5F33yNzFv&_nc_zt=23&_nc_ht=scontent.furt3-1.fna&_nc_ss=7d6a8&oh=03_Q7cD5gH3x271eCbC_qDiMSXMyUDVBoBBhxTvZnieTkB57yEcJA&oe=6A66CE94" alt="Photo 1">
+                </div>
+                <div class="polaroid photo-2" onclick="bringToFront(this)">
+                    <img src="https://scontent-bkk1-1.xx.fbcdn.net/v/t1.15752-9/734797244_1687315829154663_2828842047978447704_n.jpg?stp=dst-jpg_s960x960_tt6&_nc_cat=108&ccb=1-7&_nc_sid=9f807c&_nc_ohc=QXkJJ_AZXggQ7kNvwGGYaAF&_nc_oc=Adp7lk0sR-LIgAG4sBatsR1DADcnLvDLie3QKs4JcL0cexw0NI85-mBPX6JCi4MXjdc&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-bkk1-1.xx&_nc_ss=7a22e&oh=03_Q7cD5wH4OnRNTK6_V2DIzCCX5nUyoOwx41PVv8A4Hz6Nlt5X7Q&oe=6A693BAA" alt="Photo 2">
+                </div>
+                <div class="polaroid photo-3" onclick="bringToFront(this)">
+                    <img src="https://scontent-bkk1-2.xx.fbcdn.net/v/t1.15752-9/730463772_1044251168028266_8486303117828721175_n.jpg?stp=dst-jpg_s960x960_tt6&_nc_cat=100&ccb=1-7&_nc_sid=9f807c&_nc_ohc=9LTMAGBIzugQ7kNvwFzhyXO&_nc_oc=AdrTbKrf0YZGZ-nKDEhf9aLoCI84eNAaMXQI9OzesE40qK63NY2TKpjtaLk7mvA1PSE&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-bkk1-2.xx&_nc_ss=7a22e&oh=03_Q7cD5wH4Bnc1XiQF7X-8po_CwHDTKRK9q0SP5w4Fip58jkRxWQ&oe=6A69560E" alt="Photo 3">
+                </div>
+            </div>
+            <p style="color: var(--pink-dark); font-weight: bold; margin: 0; font-size: 1.3rem; text-shadow: 1px 1px white;">✨ Our Bestie Girl ✨</p>
+            <span style="font-size: 18px; margin-top: 5px; opacity: 0.8; text-align: center;">💖  💖</span>
+        </div>
+
+        <div class="main-cake">
+            <h1 class="headline">Happy Birthday! 💖</h1>
+            
+            <div class="cake-area">
+                <button class="cake-btn" id="cakeBtn" onclick="celebrate(event)">🎂</button>
+                
+                <div class="heart-crown">👑</div>
+                <div class="heart-photo-frame">
+                    <div class="heart-inner">
+                        <img src="https://scontent-bkk1-2.xx.fbcdn.net/v/t1.15752-9/730463772_1044251168028266_8486303117828721175_n.jpg?stp=dst-jpg_s960x960_tt6&_nc_cat=100&ccb=1-7&_nc_sid=9f807c&_nc_ohc=9LTMAGBIzugQ7kNvwFzhyXO&_nc_oc=AdrTbKrf0YZGZ-nKDEhf9aLoCI84eNAaMXQI9OzesE40qK63NY2TKpjtaLk7mvA1PSE&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-bkk1-2.xx&_nc_ss=7a22e&oh=03_Q7cD5wH4Bnc1XiQF7X-8po_CwHDTKRK9q0SP5w4Fip58jkRxWQ&oe=6A69560E" alt="Photo 4">
+                    </div>
+                </div>
+            </div>
+
+            <div class="window-photo-frame">
+                <div class="window-bar">
+                    <span>💌 bestie_pic.exe</span>
+                    <span class="window-close-dot"></span>
+                </div>
+                <img src="https://scontent-bkk1-1.xx.fbcdn.net/v/t1.15752-9/729919371_905398765917976_8203987145089649701_n.jpg?stp=dst-jpg_s960x960_tt6&_nc_cat=108&ccb=1-7&_nc_sid=9f807c&_nc_ohc=fjnLbrWD1TYQ7kNvwFwJkyN&_nc_oc=AdqYuUVZ4jaIA00qoL4g3574GnWEjgIcJW1mYdGCbtjl9zaArE44y1Fl5gM9hUJuDqo&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-bkk1-1.xx&_nc_ss=7a22e&oh=03_Q7cD5wGkmniSE6Gz8EnDHXwXAX3BERal2h-HddURuuBFCI2oEw&oe=6A696C89" alt="Photo 5">
+            </div>
+
+            <div class="hint-text">🌈 จิ้มขนมสุ่มรับคำอวยพรสุดจึ้ง! 🌈</div>
+            <button class="game-trigger-btn" onclick="toggleGameModal(true)">🎮 ทายซิ! เกิดมาแล้วกี่วัน?</button>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="birthdayModal">
+        <div class="modal-content">
+            <h2>สุขสันต์วันเกิดนะ! 🍰🎈</h2>
+            <p id="modalBlessing">ขอให้มีความสุขมากๆ !</p>
+            <p style="font-size: 1.6rem; margin: 15px 0; color: var(--pink-deep); font-weight: bold;">🎉 ขอให้ 16 ที่ดีแซ่บและปังที่สุดจร้าาา 🎉</p>
+            <button class="close-btn" onclick="toggleModal(false)">ขอบคุณน้าา 🥰 แทบขิต!</button>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="gameModal">
+        <div class="modal-content" style="max-width: 420px; border-color: #FC60A8;">
+            <h2>🧸 เกมทายอายุวัน! 🎀</h2>
+            <p style="margin: 5px 0 15px 0; color: #555;">มาดูกันว่าแกใช้ชีวิตอยู่บนโลกนี้แบบสับๆ มาแล้วกี่วัน!</p>
+            
+            <div class="game-box">
+                <div class="game-input-group">
+                    <div>
+                        <label>ปี ค.ศ. เกิด</label>
+                        <input type="number" id="birthYear" placeholder="เช่น 2010" min="1990" max="2026">
+                    </div>
+                    <div>
+                        <label>เดือน</label>
+                        <select id="birthMonth">
+                            <option value="0">ม.ค.</option> <option value="1">ก.พ.</option>
+                            <option value="2">มี.ค.</option> <option value="3">เม.ย.</option>
+                            <option value="4">พ.ค.</option> <option value="5">มิ.ย.</option>
+                            <option value="6">ก.ค.</option> <option value="7">ส.ค.</option>
+                            <option value="8">ก.ย.</option> <option value="9">ต.ค.</option>
+                            <option value="10">พ.ย.</option> <option value="11">ธ.ค.</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>วันที่</label>
+                        <input type="number" id="birthDay" placeholder="1-31" min="1" max="31">
+                    </div>
+                </div>
+                <button class="game-btn-calc" onclick="calculateDays(event)">🔮 คำนวณความแซ่บ!</button>
+                
+                <div class="game-result" id="gameResult"></div>
+            </div>
+
+            <button class="close-btn" onclick="toggleGameModal(false)" style="background: linear-gradient(135deg, #FC60A8, #F72585);">ปิดหน้าต่าง ✖</button>
+        </div>
+    </div>
+
+    <script>
+        const sassyBlessings = [
+            "แฮปปี้เบิร์ธเดย์จ้า! ขอให้สวยปัง  เด็กเยอะๆ เงินไหลเข้าบัญชีรัวๆ จนนับไม่ทันไปเลยแม่! 💅🔥",
+            "HBD นะตัวมารดา! ปีนี้ขอให้ได้เจอผู้แซ่บๆ งานดี งานพรีเมียม เลิกเป็นคนดี แล้วมาเป็นคนรวยกันเถอะค่ะ! 👑💸",
+            "สุขสันต์วันเกิดจ่ะ! ขอให้แกสวยวันสวยคืน สวยจนคนข้างบ้านอิจฉา รวยระดับเศรษฐีดูไบยังต้องสยบ! 💅👄",
+            "HBD จ้าเพื่อนรัก! 16 ขวบแบบสับแบบจึ้ง ขอให้ปีนี้ดวงปังปุริเย่ มีแต่คนเปย์ หัวบันไดไม่แห้งไปเลยน้าาา 🛍️✨",
+            "แฮปปี้เบิร์ธเดย์! สุขขีสุขขัง มีตังค์ใช้เยอะๆ เด็กในคลังหนาแน่นสับรางกันไม่ทันไปเลยจร้าาาา! 🤪💖"
+        ];
+
+        const dessertEmojis = ['🎂', '🧁', '🍩', '🍮', '🍦', '🍰', '🍪', '🥞', '🍫'];
+        let zIndexCounter = 10;
+
+        function bringToFront(element) {
+            zIndexCounter++;
+            element.style.zIndex = zIndexCounter;
+        }
+
+        function celebrate(event) {
+            for (let i = 0; i < 25; i++) {
+                createHeart(event.clientX, event.clientY);
+            }
+
+            const randomDessert = dessertEmojis[Math.floor(Math.random() * dessertEmojis.length)];
+            document.getElementById('cakeBtn').innerText = randomDessert;
+
+            const randomIndex = Math.floor(Math.random() * sassyBlessings.length);
+            document.getElementById('modalBlessing').innerText = sassyBlessings[randomIndex];
+
+            setTimeout(() => {
+                toggleModal(true);
+            }, 250);
+        }
+
+        function toggleModal(show) {
+            const modal = document.getElementById('birthdayModal');
+            if (show) {
+                modal.classList.add('active');
+            } else {
+                modal.classList.remove('active');
+            }
+        }
+
+        function toggleGameModal(show) {
+            const modal = document.getElementById('gameModal');
+            if (show) {
+                modal.classList.add('active');
+                document.getElementById('gameResult').innerHTML = ""; 
+            } else {
+                modal.classList.remove('active');
+            }
+        }
+
+        function calculateDays(event) {
+            const year = parseInt(document.getElementById('birthYear').value);
+            const month = parseInt(document.getElementById('birthMonth').value);
+            const day = parseInt(document.getElementById('birthDay').value);
+
+            if (!year || isNaN(day) || day < 1 || day > 31) {
+                document.getElementById('gameResult').innerHTML = "กรอกข้อมูลให้ครบและถูกต้องก่อนนะยัยตัวดี! 😡💖";
+                return;
+            }
+
+            const birthDate = new Date(year, month, day);
+            const today = new Date();
+
+            const diffTime = today - birthDate;
+            
+            if (diffTime < 0) {
+                document.getElementById('gameResult').innerHTML = "แกจะเกิดในอนาคตไม่ได้นะ ตั้งสติก่อน! 🔮😂";
+                return;
+            }
+
+            const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+            
+            for (let i = 0; i < 15; i++) {
+                createHeart(event.clientX, event.clientY);
+            }
+
+            let sassyComment = "";
+            if (diffDays > 5500) {
+                sassyComment = "<br><span style='font-size:1rem; color:#666;'>อยู่มานานขนาดนี้ รอดเงื้อมมือยมบาลมาได้ถือว่าบุญเรืองมากค่ะตัวแม่! 🧓💅</span>";
+            } else {
+                sassyComment = "<br><span style='font-size:1rem; color:#666;'>เกิดมาไม่กี่วันแต่ความแซ่บพุ่งทะลุปรอทไปละจร้าาา นัมเบอร์วัน! 👶🔥</span>";
+            }
+
+            document.getElementById('gameResult').innerHTML = `🎉 แกเกิดมาแล้วทั้งหมด...<br><span style='font-size: 2rem; color: #F72585;'>✨ ${diffDays.toLocaleString()} วัน ✨</span>${sassyComment}`;
+        }
+
+        function createHeart(x, y) {
+            const heart = document.createElement('div');
+            heart.classList.add('heart-particle');
+            
+            const hearts = ['💖', '🌸', '✨', '💝', '👑', '🎀', '🔥', '💋', '🧁', '🧸', '🍬', '⭐', '🎈', '🐾', '🐰'];
+            heart.innerText = hearts[Math.floor(Math.random() * hearts.length)];
+            
+            // ใช้ fallback เป็นพิกัดกึ่งกลางหน้าจอหากตรวจไม่เจอเมาส์
+            const clickX = x || window.innerWidth / 2;
+            const clickY = y || window.innerHeight / 2;
+
+            heart.style.left = clickX + 'px';
+            heart.style.top = clickY + 'px';
+            
+            const xMove = (Math.random() - 0.5) * 450;
+            const yMove = (Math.random() - 0.5) * 450 - 100;
+            
+            heart.style.setProperty('--x', `${xMove}px`);
+            heart.style.setProperty('--y', `${yMove}px`);
+            
+            document.body.appendChild(heart);
+            
+            setTimeout(() => { heart.remove(); }, 1400);
+        }
+
+        function createFloatingBg() {
+            const bg = document.getElementById('bgDecor');
+            const icons = ['✨', '🌸', '🤍', '🍰', '🎈', '🧸', '🐰', '🐱', '⭐', '🍭', '🐾', '🎀'];
+            for(let i=0; i<35; i++) {
+                const item = document.createElement('div');
+                item.innerText = icons[Math.floor(Math.random() * icons.length)];
+                item.style.position = 'absolute';
+                item.style.left = Math.random() * 95 + 'vw';
+                item.style.top = Math.random() * 95 + 'vh';
+                item.style.opacity = '0.35';
+                item.style.fontSize = Math.random() * 12 + 18 + 'px';
+                item.style.animation = `cute-bounce ${Math.random() * 2 + 2.5}s infinite ease-in-out ${Math.random()}s`;
+                bg.appendChild(item);
+            }
+        }
+        createFloatingBg();
+    </script>
+</body>
+</html>
